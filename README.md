@@ -1,4 +1,4 @@
-![https___img shields io_badge_-Java-007396](https://github.com/tatanota/sauce/assets/158541120/76562f43-65db-47ab-9d1e-9752b967c85b)<div id="top"></div>
+<div id="top"></div>
 
 記載中
 
@@ -15,7 +15,7 @@
   <!-- バックエンドのフレームワーク一覧 -->
   <img src="https://img.shields.io/badge/-Django-092E20.svg?logo=django&style=for-the-badge">
   <img src="http://www.w3.org/2000/svg">
-
+![https___img shields io_badge_-Java-007396](https://github.com/tatanota/sauce/assets/158541120/76562f43-65db-47ab-9d1e-9752b967c85b)
 
 
 
