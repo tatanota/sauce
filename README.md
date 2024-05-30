@@ -12,25 +12,24 @@
   <img src="https://img.shields.io/badge/-Next.js-000000.svg?logo=next.js&style=for-the-badge">
   <img src="https://img.shields.io/badge/-TailwindCSS-000000.svg?logo=tailwindcss&style=for-the-badge">
   <img src="https://img.shields.io/badge/-React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+    <img src="https://img.shields.io/badge/-Swift-20232A?style=for-the-badge&logo=Swift&logoColor=61DAFB">
   
   ◆バックエンドのフレームワーク<br>
   <img src="https://img.shields.io/badge/-Django-092E20.svg?logo=django&style=for-the-badge">
   <img src="[http://www.w3.org/2000/svg](https://img.shields.io/badge/:badgeContent">
   
+  
   ◆バックエンドの言語<br>
   <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
   <img src="https://img.shields.io/badge/-java-F2C63C.svg?logo=java&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-php-F2C63C.svg?logo=php&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Kotlin-F2C63C.svg?logo=Kotlin&style=for-the-badge">
   
   ◆ミドルウェア<br>
-  <img src="https://img.shields.io/badge/-Nginx-269539.svg?logo=nginx&style=for-the-badge">
   <img src="https://img.shields.io/badge/-MySQL-4479A1.svg?logo=mysql&style=for-the-badge&logoColor=white">
-  <img src="https://img.shields.io/badge/-Gunicorn-199848.svg?logo=gunicorn&style=for-the-badge&logoColor=white">
+  <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">
+  <img src="https://img.shields.io/badge/-PostgreSql-4479A1.svg?logo=PostgreSql&style=for-the-badge&logoColor=white">
   
- ◆インフラ<br>
-  <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-githubactions-FFFFFF.svg?logo=github-actions&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Amazon%20aws-232F3E.svg?logo=amazon-aws&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-terraform-20232A?style=for-the-badge&logo=terraform&logoColor=844EBA">
 </p>
 
 ## 目次
