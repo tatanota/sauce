@@ -12,6 +12,7 @@
   
   ◆ミドルウェア<br>
   <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">
+  <br>
   <img src="https://img.shields.io/badge/-PostgreSql-4479A1.svg?logo=PostgreSql&style=for-the-badge&logoColor=white">
 </p>
 
@@ -26,12 +27,16 @@
   
   ◆バックエンドの言語<br>
   <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
+  <br>
   <img src="https://img.shields.io/badge/-java-F2C63C.svg?logo=java&style=for-the-badge">
+  <br>
   <img src="https://img.shields.io/badge/-php-F2C63C.svg?logo=php&style=for-the-badge">
+  <br>
   <img src="https://img.shields.io/badge/-Kotlin-F2C63C.svg?logo=Kotlin&style=for-the-badge">
   
   ◆ミドルウェア<br>
   <img src="https://img.shields.io/badge/-MySQL-4479A1.svg?logo=mysql&style=for-the-badge&logoColor=white">
+  <br>
   <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">  
 </p>
 
