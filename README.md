@@ -15,6 +15,7 @@
   <img src="https://img.shields.io/badge/-PostgreSql-4479A1.svg?logo=PostgreSql&style=for-the-badge&logoColor=white">
 </p>
 
+
 ## 独学技術一覧
 
 <!-- シールド一覧 -->
@@ -38,8 +39,6 @@
 
 1. [プロジェクトについて](#プロジェクトについて)
 2. [環境](#環境)
-3. [ディレクトリ構成](#ディレクトリ構成)
-4. [開発環境構築](#開発環境構築)
 
 
 <!-- プロジェクトについて -->
