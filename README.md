@@ -19,7 +19,7 @@
   
   ◆バックエンドの言語<br>
   <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=java&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-java-F2C63C.svg?logo=java&style=for-the-badge">
   
   ◆ミドルウェア<br>
   <img src="https://img.shields.io/badge/-Nginx-269539.svg?logo=nginx&style=for-the-badge">
