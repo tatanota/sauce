@@ -1,8 +1,21 @@
 <div id="top"></div>
 
-記載中
 
-## 使用技術一覧
+## 経験技術一覧
+
+<!-- シールド一覧 -->
+
+<p style="display: inline">
+  
+  ◆バックエンドの言語<br>
+  <img src="https://img.shields.io/badge/-java-F2C63C.svg?logo=java&style=for-the-badge">
+  
+  ◆ミドルウェア<br>
+  <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">
+  <img src="https://img.shields.io/badge/-PostgreSql-4479A1.svg?logo=PostgreSql&style=for-the-badge&logoColor=white">
+</p>
+
+## 独学技術一覧
 
 <!-- シールド一覧 -->
 
@@ -18,9 +31,7 @@
   
   ◆ミドルウェア<br>
   <img src="https://img.shields.io/badge/-MySQL-4479A1.svg?logo=mysql&style=for-the-badge&logoColor=white">
-  <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">
-  <img src="https://img.shields.io/badge/-PostgreSql-4479A1.svg?logo=PostgreSql&style=for-the-badge&logoColor=white">
-  
+  <img src="https://img.shields.io/badge/-Oracle-4479A1.svg?logo=Oracle&style=for-the-badge&logoColor=white">  
 </p>
 
 ## 目次
