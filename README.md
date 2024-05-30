@@ -86,58 +86,7 @@ React、DRF、Terraform を勉強する際に使用できるテンプレート
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
-## ディレクトリ構成
 
-<!-- Treeコマンドを使ってディレクトリ構成を記載 -->
-
-❯ tree -a -I "node_modules|.next|.git|.pytest_cache|static" -L 2
-.
-├── .devcontainer
-│   └── devcontainer.json
-├── .env
-├── .github
-│   ├── action
-│   ├── release-drafter.yml
-│   └── workflows
-├── .gitignore
-├── Makefile
-├── README.md
-├── backend
-│   ├── .vscode
-│   ├── application
-│   ├── docs
-│   ├── manage.py
-│   ├── output
-│   ├── poetry.lock
-│   ├── project
-│   └── pyproject.toml
-├── containers
-│   ├── django
-│   ├── front
-│   ├── mysql
-│   └── nginx
-├── docker-compose.yml
-├── frontend
-│   ├── .gitignore
-│   ├── README.md
-│   ├── __test__
-│   ├── components
-│   ├── features
-│   ├── next-env.d.ts
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── pages
-│   ├── postcss.config.js
-│   ├── public
-│   ├── styles
-│   ├── tailwind.config.js
-│   └── tsconfig.json
-└── infra
-    ├── .gitignore
-    ├── docker-compose.yml
-    ├── main.tf
-    ├── network.tf
-    └── variables.tf
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
@@ -191,43 +140,6 @@ make down
 | TRUSTED_ORIGINS        | CORS で許可するオリジン                   | http://localhost                   |                                          |
 | DJANGO_SETTINGS_MODULE | Django アプリケーションの設定モジュール   | project.settings.local             | project.settings.dev                     |
 
-### コマンド一覧
 
-| Make                | 実行する処理                                                            | 元のコマンド                                                                               |
-| ------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| make prepare        | node_modules のインストール、イメージのビルド、コンテナの起動を順に行う | docker-compose run --rm front npm install<br>docker-compose up -d --build                  |
-| make up             | コンテナの起動                                                          | docker-compose up -d                                                                       |
-| make build          | イメージのビルド                                                        | docker-compose build                                                                       |
-| make down           | コンテナの停止                                                          | docker-compose down                                                                        |
-| make loaddata       | テストデータの投入                                                      | docker-compose exec app poetry run python manage.py loaddata crm.json                      |
-| make makemigrations | マイグレーションファイルの作成                                          | docker-compose exec app poetry run python manage.py makemigrations                         |
-| make migrate        | マイグレーションを行う                                                  | docker-compose exec app poetry run python manage.py migrate                                |
-| make show_urls      | エンドポイントをターミナル上で一覧表示                                  | docker-compose exec app poetry run python manage.py show_urls                              |
-| make shell          | テストデータの投入                                                      | docker-compose exec app poetry run python manage.py debugsqlshell                          |
-| make superuser      | スーパーユーザの作成                                                    | docker-compose exec app poetry run python manage.py createsuperuser                        |
-| make test           | テストを実行                                                            | docker-compose exec app poetry run pytest                                                  |
-| make test-cov       | カバレッジを表示させた上でテストを実行                                  | docker-compose exec app poetry run pytest --cov                                            |
-| make format         | black と isort を使ってコードを整形                                     | docker-compose exec app poetry run black . <br> docker-compose exec app poetry run isort . |
-| make update         | Poetry 内のパッケージの更新                                             | docker-compose exec app poetry update                                                      |
-| make app            | アプリケーション のコンテナへ入る                                       | docker exec -it app bash                                                                   |
-| make db             | データベースのコンテナへ入る                                            | docker exec -it db bash                                                                    |
-| make pdoc           | pdoc ドキュメントの作成                                                 | docker-compose exec app env CI_MAKING_DOCS=1 poetry run pdoc -o docs application           |
-| make init           | Terraform の初期化                                                      | docker-compose -f infra/docker-compose.yml run --rm terraform init                         |
-| make fmt            | Terraform の設定ファイルをフォーマット                                  | docker-compose -f infra/docker-compose.yml run --rm terraform fmt                          |
-| make validate       | Terraform の構成ファイルが正常であることを確認                          | docker-compose -f infra/docker-compose.yml run --rm terraform validate                     |
-| make show           | 現在のリソースの状態を参照                                              | docker-compose -f infra/docker-compose.yml run --rm terraform show                         |
-| make apply          | Terraform の内容を適用                                                  | docker-compose -f infra/docker-compose.yml run --rm terraform apply                        |
-| make destroy        | Terraform で構成されたリソースを削除                                    | docker-compose -f infra/docker-compose.yml run --rm terraform destroy                      |
-
-### リモートデバッグの方法
-
-リモートデバッグ を使用する際は以下の url を参考に設定してください<br>
-[Django のコンテナへリモートデバッグしよう！](https://qiita.com/shun198/items/9e4fcb4479385217c323)
-
-### Module not found
-
-make build
-
-を実行して Docker image を更新してください
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
