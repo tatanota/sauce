@@ -1,5 +1,7 @@
 ![https___img shields io_badge_-Java-007396](https://github.com/tatanota/sauce/assets/158541120/76562f43-65db-47ab-9d1e-9752b967c85b)<div id="top"></div>
 
+記載中
+
 ## 使用技術一覧
 
 <!-- シールド一覧 -->
