@@ -1,4 +1,4 @@
-<div id="top"></div>
+![https___img shields io_badge_-Java-007396](https://github.com/tatanota/sauce/assets/158541120/76562f43-65db-47ab-9d1e-9752b967c85b)<div id="top"></div>
 
 ## 使用技術一覧
 
@@ -12,6 +12,18 @@
   <img src="https://img.shields.io/badge/-React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
   <!-- バックエンドのフレームワーク一覧 -->
   <img src="https://img.shields.io/badge/-Django-092E20.svg?logo=django&style=for-the-badge">
+  <img src="http://www.w3.org/2000/svg">
+
+
+
+
+
+
+
+
+
+  
+  
   <!-- バックエンドの言語一覧 -->
   <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
   <!-- ミドルウェア一覧 -->
