@@ -44,23 +44,25 @@ func saveArrayToUserDefaults(items: [[Item]]) {
 }
 
 
-//-- 配列にデータ格納
-func addData(items: inout [[Item]], _ counter: Int, _ totalQuestions: Int) {
-    
-    //日付変換
+//データ取得関数
+func loadArrayFromUserDefaults(items: inout [[Item]]) {
+    if let savedData = UserDefaults.standard.data(forKey: "itemsKey") {
+        let decoder = JSONDecoder()
+        if let savedItems = try? decoder.decode([[Item]].self, from: savedData) {
+ 
+            items = savedItems
+       
+        }
+    }
+}
+
+func addData(items: inout [[Item]], counter: Int, totalQuestions: Int) {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd HH:mm"
     let dateString = formatter.string(from: Date())
-    
-    
-    
-    //◼️◼️◼️◼️◼️◼️最後の配列の＋１に格納したい
-    if let lastIndex = items.indices.last {
-        items[lastIndex].append(Item(date: dateString, score: counter, totalQuestions: totalQuestions))
-    } else {
-        // itemsが空の場合、新しいサブ配列を作成して追加
-        items.append([Item(date: dateString, score: counter, totalQuestions: totalQuestions)])
-    }
+
+    // 配列の最後のサブ配列の次に追加
+    items.append([Item(date: dateString, score: counter, totalQuestions: totalQuestions)])
     saveArrayToUserDefaults(items: items)
 }
 
@@ -74,14 +76,3 @@ class QuizController {
 }
 
 
-//データ取得関数
-func loadArrayFromUserDefaults(items: inout [[Item2]]) {
-    if let savedData = UserDefaults.standard.data(forKey: "itemsKey") {
-        let decoder = JSONDecoder()
-        if let savedItems = try? decoder.decode([[Item2]].self, from: savedData) {
- 
-            items = savedItems
-       
-        }
-    }
-}

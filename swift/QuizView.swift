@@ -21,6 +21,8 @@ struct Item: Codable, Identifiable, Hashable {
 
 struct QuizView: View {
     
+    @Binding var path: [SamplePath]
+    
     //現在の質問のインデックスを保持するStateプロパティ。
     @State private var currentQuestionIndex = 0
     
@@ -34,8 +36,8 @@ struct QuizView: View {
     @State private var showAlert = false
     
     // 4つのサブ配列を持つ2次元配列
-    @State private var items: [[Item]] = Array(repeating: [], count: 4)
-    
+    @State private var items: [[Item]] = []
+
     @Environment(\.presentationMode) var presentationMode // 環境変数を追加
     
     
@@ -46,8 +48,23 @@ struct QuizView: View {
     
     var body: some View {
         
-     
         VStack {
+            
+            //画面遷移
+            Button("記録表示") {
+                addData(items: &items, counter: score, totalQuestions: currentQuestionIndex)
+                path.append(.pathB)
+            }
+            .font(.title2)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)//角丸く
+            
+            .onAppear {
+                loadArrayFromUserDefaults(items: &items)
+            }
+        
             //現在の質問のインデックスが質問の総数より小さい場合と大きい場合で条件分岐
             if currentQuestionIndex < questions.count {
                 
@@ -82,23 +99,6 @@ struct QuizView: View {
                         ForEach(["A", "B", "C", "D"], id: \.self) { label in
                             AnswerButton(label: label, selectedAnswer: $selectedAnswer, showAlert: $showAlert, correctAnswer: questions[currentQuestionIndex].answer)
                         }
-                        
-                        /*
-                        // ボタンA
-                        Button(action: {
-                            self.selectedAnswer = "A"
-                            if selectedAnswer == questions[currentQuestionIndex].answer {
-                            
-                            }
-                            self.showAlert = true
-                        }) {
-                            Text("A")
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                        }
-                        
-                        }*/
                     }
                     .padding(.horizontal) // 水平方向の余白
                 }
@@ -112,21 +112,24 @@ struct QuizView: View {
                     .font(.title2)
                     .padding()
                 
-
-                
                 //画面遷移
-                        NavigationLink(destination: ScoreView()) {
-                            Text("記録表示")
-                                .font(.title2)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10) // 角を丸く
-                        }
+                Button("記録表示") {
+                    path.append(.pathB)
+                }
+                .font(.title2)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10) // 角を丸く
+                
                 
                 
                 .onAppear {
-                    addData(items: &items,score, questions.count)
+                    //addData(items: &items, score, questions.count)
+                    
+                    loadArrayFromUserDefaults(items: &items)
+                    addData(items: &items, counter: score, totalQuestions: currentQuestionIndex)
+                    
                 }
             }
         }
@@ -139,27 +142,27 @@ struct QuizView: View {
                     if selectedAnswer == questions[currentQuestionIndex].answer {
                         score += 1
                     }
-                 //   addData(score, questions.count)
                     
                     //問題数をカウント
                     QuizController.nextQuestion(quescount: &currentQuestionIndex)
                 }
             )
         }
-           
-            
-        .navigationBarItems(trailing:
-            // ホームに戻るボタン
-            Button(action: {
-            presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "house.fill") // 家のアイコンを表示
-                    .font(.system(size: 18))
-                    .padding()
-                    .foregroundColor(.blue)
                    
-            }
+        .navigationBarItems(trailing:
+                // ホームに戻るボタン
+                Button(action: {
+                    path.removeAll()
+                }
+                      )
+                {
+                    Image(systemName: "house.fill") // 家のアイコンを表示
+                        .font(.system(size: 18))
+                        .padding()
+                        .foregroundColor(.blue)
+                }
                             )
+        
     
         
         
