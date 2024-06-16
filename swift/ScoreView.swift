@@ -24,11 +24,8 @@ struct ScoreView: View {
                         .border(.blue, width: 0.5)
                     //左寄せ
                         .frame(width: 180, alignment: .leading )
-                    Text("　スコア")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .border(.blue, width: 0.5)
-                    Text("　回答数　")
+
+                    Text("正当数 / 回答数")
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .border(.blue, width: 0.5)
@@ -45,11 +42,17 @@ struct ScoreView: View {
                         HStack {
                             Text(item.date)
                                 .frame(width: 180, alignment: .leading)
-                            
-                            Text("\(item.score)")
+                        
+                            /*  Text(item.no)
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
-                            Text("\(item.totalQuestions)")
+                            Text("\(item.class1)")
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            Text("\(item.class2)")
+                                .frame(maxWidth: .infinity, alignment: .center)*/
+                            
+                            Text("\(item.score)/\(item.totalQuestions)")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }
                         .padding(.vertical,0.01)

@@ -38,20 +38,21 @@ struct ContentView: View {
                     Button("レベル1\n 問題開始") {
                         navigatePath.append(.pathA)
                     }
+                    .padding()
                     .font(.title2)
                     .foregroundColor(.blue)
-                    .padding()
                     .border(.blue, width: 0.5)
                     
                     //画面遷移
                     Button("記録表示") {
                         navigatePath.append(.pathB)
                     }
-                    .font(.title2)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)//角丸く
+                    .font(.title2)
+                    .foregroundColor(.blue)
+                    .border(.blue, width: 0.5)
+
+                    
                 }
                 // 配列パスに追加された値が遷移先のビューを定義
                 .navigationDestination(for: SamplePath.self) { value in

@@ -12,6 +12,10 @@ import SwiftUI
 //　　　　　　　　　　　　　id というプロパティ(UUID)で各インスタンスを一意に識別
 //Hashableプロトコル　Item インスタンスはハッシュ可能　Set や Dictionary のキーとして使用可
 struct Item: Codable, Identifiable, Hashable {
+    var no: String
+    var class1: String
+    var class2: String
+    
     var id = UUID()
     var date: String
     var score: Int
@@ -41,10 +45,10 @@ struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode // 環境変数を追加
     
     
-    
     //問題データを配列にロードする関数
-    //Question.swiftのloadQuestions()を直接呼び出し可能
+    //Fanction.swiftのloadQuestions()を直接呼び出し可能
     let questions = loadQuestions()
+    
     
     var body: some View {
         
@@ -52,57 +56,102 @@ struct QuizView: View {
             
             //画面遷移
             Button("記録表示") {
-                addData(items: &items, counter: score, totalQuestions: currentQuestionIndex)
+                
+             /*   addData(no:questions[currentQuestionIndex].no,class1:questions[currentQuestionIndex].class1 , class2:questions[currentQuestionIndex].class2  ,items: &items, counter: score, totalQuestions: currentQuestionIndex)
+              */
+                
+                addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: currentQuestionIndex)
+             
+                
                 path.append(.pathB)
             }
-            .font(.title2)
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)//角丸く
+            .font(.title2)
+            .foregroundColor(.blue)
+            .border(.blue, width: 0.5)
             
             .onAppear {
                 loadArrayFromUserDefaults(items: &items)
             }
-        
+            
             //現在の質問のインデックスが質問の総数より小さい場合と大きい場合で条件分岐
             if currentQuestionIndex < questions.count {
+
+                // 現在の質問を取得
+                let currentQuestion = questions[currentQuestionIndex]
                 
+                //大分類表示
+                Text(currentQuestion.class1)
+                    .font(.body)
+                //中分類表示
+                Text(currentQuestion.class2)
+                    .font(.body)
                 //問題文表示
-                Text("Q: " + questions[currentQuestionIndex].text)
+                Text("Q: " + currentQuestion.no + currentQuestion.text)
                     .font(.title)
                     .padding()
                 Spacer()//上寄せ
                 
+                /*
+                 shuffledIndices ランダムに並べ替えた後の選択肢のインデックスを保持する変数
+                 questions[] 質問オブジェクトを取得
+                 currentQuestionIndex 現在表示している質問のインデックス
+                 options 質問に対する選択肢（配列）を表します。
+                 options.indices optionsのインデックスの範囲 indices は 0..<4
+                 .shuffled() 配列内の要素をランダムに並び替えるメソッド
+                 
+                 現在表示している問題の選択肢の範囲を読み込み、.shuffled()で並び替え
+                */
+                
+                // 選択肢をシャッフル
+              //  let shuffledIndices = questions[currentQuestionIndex].options.indices.shuffled()
+    
+                
                 
                 //選択肢表示　questionsに格納した内容を表示
                 VStack(alignment: .leading, spacing: 10) {
+                
+                    // 初期化時に選択肢のインデックスをシャッフルする
+                   /* if shuffledIndices.isEmpty {
+                shuffledIndices = questions[currentQuestionIndex].options.indices.shuffled()
+                    }*/
+                    
+                               
                     
                     // 選択肢を縦並びで表示
-                    ForEach(questions[currentQuestionIndex].options.indices, id: \.self) { index in
+                    ForEach(currentQuestion.options.indices, id: \.self) { index in
                         HStack {
-                            Text("\(["A", "B", "C", "D"][index]): \(questions[currentQuestionIndex].options[index])")
-                                .cornerRadius(10)
-                                .onTapGesture {
-                                    self.selectedAnswer = questions[currentQuestionIndex].options[index]
-                                }
-                                .padding(.vertical, 5)
+                            if index < currentQuestion.options.count {  // インデックスが範囲内か確認
+                                Text("\(["A", "B", "C", "D"][index]): \(currentQuestion.options[index])")
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        self.selectedAnswer = currentQuestion.options[index]
+                                    }
+                                    .padding(.vertical, 5)
+                            }
                         }
                     }
                     .padding(.horizontal) // 水平方向の余白
                     Spacer().frame(width: 50) // テキストを左寄せにするためのSpacer
+                    
                     
                     //回答ボタン
                     HStack(spacing: 40) {
                         
                         // ボタンA, B, C, D の表示
                         ForEach(["A", "B", "C", "D"], id: \.self) { label in
-                            AnswerButton(label: label, selectedAnswer: $selectedAnswer, showAlert: $showAlert, correctAnswer: questions[currentQuestionIndex].answer)
+                            AnswerButton(label: label, selectedAnswer: $selectedAnswer,
+                                         showAlert: $showAlert, correctAnswer: currentQuestion.answer)
+  
+                            
                         }
+                        
                     }
                     .padding(.horizontal) // 水平方向の余白
                 }
-                
+            
+                    
+                    
              
             } else {
                 Text("クイズが終了しました")
@@ -116,38 +165,46 @@ struct QuizView: View {
                 Button("記録表示") {
                     path.append(.pathB)
                 }
-                .font(.title2)
                 .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10) // 角を丸く
-                
+                .font(.title2)
+                .foregroundColor(.blue)
+                .border(.blue, width: 0.5)
                 
                 
                 .onAppear {
-                    //addData(items: &items, score, questions.count)
-                    
+
+                    //データ記録
                     loadArrayFromUserDefaults(items: &items)
-                    addData(items: &items, counter: score, totalQuestions: currentQuestionIndex)
-                    
+
+               //     addData(no: questions[currentQuestionIndex].no, class1: questions[currentQuestionIndex].class1,
+                //            class2: questions[currentQuestionIndex].class2, items: &items, counter: score, totalQuestions: currentQuestionIndex)
+                    addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: currentQuestionIndex)
                 }
             }
         }
+        
+        
+//-------------------------------------
         //alertメソッド
         .alert(isPresented: $showAlert) {
             Alert(
+ 
                 title: Text(selectedAnswer == questions[currentQuestionIndex].answer ? "正解" : "不正解"),
                 message: Text(selectedAnswer == questions[currentQuestionIndex].answer ? "正解です！" : "正しい答えは \(questions[currentQuestionIndex].answer) です。"),
-                dismissButton: .default(Text("次へ")) {
+                primaryButton: .default(Text("次へ")) {
                     if selectedAnswer == questions[currentQuestionIndex].answer {
                         score += 1
                     }
+
                     
                     //問題数をカウント
                     QuizController.nextQuestion(quescount: &currentQuestionIndex)
-                }
+                },
+                secondaryButton: .cancel(Text("復習"))
             )
         }
+
+//-------------------------------------
                    
         .navigationBarItems(trailing:
                 // ホームに戻るボタン
