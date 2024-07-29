@@ -65,10 +65,12 @@ struct ContentView: View {
                                 .border(.blue, width: 0.5)
                                 .padding()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .onChange(of: inputName) { newValue in
-                                    inputName = newValue.filter { "0123456789".contains($0) }
+                                .onChange(of: inputName) {
+                                    inputName = inputName.filter { "0123456789".contains($0) }
                                 }
                             
+
+                        
                             
                             
                             Spacer().frame(width: 150)

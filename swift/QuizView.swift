@@ -49,6 +49,7 @@ struct QuizView: View {
     
     @State private var maxcount: Int = 0 // maxcountの定義
  
+    @State private var ncount: Int = 0 // ncountの定義 解いた数
     
     // メニューの開閉
    // @State var isMenuOpen = false
@@ -69,8 +70,9 @@ struct QuizView: View {
                     
                     /*  問題番号等記録用 addData(no:questions[currentQuestionIndex].no,class1:questions[currentQuestionIndex].class1 , class2:questions[currentQuestionIndex].class2  ,items: &items, counter: score, totalQuestions: currentQuestionIndex)
                      */
-                    
-                    addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: maxcount)
+                   // setupMaxCount()
+                  //  addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: maxcount)
+                    addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: ncount)
                     
                     
                     path.append(.pathB)
@@ -81,8 +83,9 @@ struct QuizView: View {
                 .border(.blue, width: 0.5)
                 
                 .onAppear {
-                    loadArrayFromUserDefaults(items: &items)
                     setupMaxCount()
+                    loadArrayFromUserDefaults(items: &items)
+
                 }
                 
                 
@@ -90,6 +93,7 @@ struct QuizView: View {
                 //現在の質問のインデックスが質問の総数より小さい場合と大きい場合で条件分岐
                 //if currentQuestionIndex < questions.count {
                 if currentQuestionIndex < maxcount {
+                    
                     
                     // 現在の質問を取得
                     let currentQuestion = questions[currentQuestionIndex]
@@ -100,6 +104,12 @@ struct QuizView: View {
                     //中分類表示
                     Text(currentQuestion.class2)
                         .font(.body)
+                    
+                    //現在の回答数を表示
+                    Text("\(ncount + 1)" + "/\(maxcount)" + "問目")
+                        .font(.body)
+                        
+                    
                     //問題文表示
                     Text(currentQuestion.no + "Q: " +  currentQuestion.text)
                         .font(.title)
@@ -131,15 +141,29 @@ struct QuizView: View {
                             
                             // ボタンA, B, C, D の表示
                             ForEach(["A", "B", "C", "D"], id: \.self) { label in
-                                AnswerButton(label: label, selectedAnswer: $selectedAnswer,
+                               /* AnswerButton(label: label, selectedAnswer: $selectedAnswer,
                                              showAlert: $showAlert, correctAnswer: currentQuestion.answer)
+                                */
                             
+                                Button(action: {
+                                    selectedAnswer = label
+                                    showAlert = true
+                                    ncount += 1
+                                }) {
+                                    Text(label)
+                                        .padding()
+                                        .border(.blue, width: 0.5)
+
+
+                                    
+                                }
+                                
                             }
                             
                         }//HStack
                         .padding(.horizontal) // 水平方向の余白
+
                         
-              
                     }//VStack
                     
 
@@ -172,7 +196,8 @@ struct QuizView: View {
                          addData(no: questions[currentQuestionIndex].no, class1: questions[currentQuestionIndex].class1,
                          class2: questions[currentQuestionIndex].class2, items: &items, counter: score, totalQuestions: currentQuestionIndex)
                          */
-                        addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: maxcount)
+                      //  addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: maxcount)
+                        addData(no: "", class1: "",class2: "",items: &items, counter: score, totalQuestions: ncount)
                     }
                 }//If
             }//VStack
@@ -222,6 +247,7 @@ struct QuizView: View {
     
     
     private func setupMaxCount() {
+        //inputName 入力した問題数
         if let inputCount = Int(inputName), inputCount > 0, inputCount < questions.count {
             maxcount = inputCount
         } else {
